@@ -178,6 +178,7 @@ export default function ReportIssue() {
         locationDetails: location.trim(),
         addressLabel: selectedLabel || null,
         mapZoom: mapRef.current ? mapRef.current.getZoom() : null,
+        resolved: false,
         userId: user.uid,
         createdAt: new Date().toISOString(),
       };

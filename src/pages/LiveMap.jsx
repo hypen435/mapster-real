@@ -6,7 +6,7 @@ import { useAuth } from '../state/AuthContext.jsx';
 import Slider from 'react-slick';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
-import { collection, onSnapshot } from "firebase/firestore";
+import { collection, onSnapshot, doc, updateDoc } from "firebase/firestore";
 import { db } from "../firebase";
 
 const containerStyle = { width: '100%', height: 'calc(100vh - 150px)' };
@@ -80,14 +80,19 @@ export default function LiveMap() {
             .filter((i) => i?.location && Number.isFinite(i.location.lat) && Number.isFinite(i.location.lng))
             .map((issue) => (
               <Marker
-                key={issue.id}
+                key={`${issue.id}-${issue.resolved ? 'resolved' : 'open'}`}
                 position={[issue.location.lat, issue.location.lng]}
                 icon={issue.resolved ? greenIcon : redIcon}
               >
                 <Popup>
                   <div style={{ maxWidth: 280 }}>
-                    <div style={{ fontWeight: 700, marginBottom: 6, fontSize: 14 }}>
-                      {issue.title || 'Reported Issue'}
+                    <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'baseline', marginBottom: 6 }}>
+                      <div style={{ fontWeight: 700, fontSize: 14 }}>
+                        {issue.title || 'Reported Issue'}
+                      </div>
+                      <div style={{ fontSize: 11, color: '#6b7280' }}>
+                        {issue.createdAt ? new Date(issue.createdAt).toLocaleString() : ''}
+                      </div>
                     </div>
                     {Array.isArray(issue.imageUrls) && issue.imageUrls.length > 0 && (
                       <Slider dots infinite speed={500} slidesToShow={1} slidesToScroll={1}>
@@ -104,16 +109,31 @@ export default function LiveMap() {
                         ))}
                       </Slider>
                     )}
-                    <div style={{ fontSize: 12, marginBottom: 6 }}>
-                      {issue.description}
-                    </div>
                     {(issue.addressLabel || issue.locationDetails) && (
-                      <div style={{ fontSize: 12, fontStyle: 'italic' }}>
+                      <div style={{ fontSize: 12, fontStyle: 'italic', marginBottom: 6 }}>
                         Location: {issue.addressLabel || issue.locationDetails}
                       </div>
                     )}
+                    {issue.description && (
+                      <div style={{ fontSize: 12 }}>
+                        {issue.description}
+                      </div>
+                    )}
                     {user && isAdmin && (
-                      <button onClick={() => toggleIssueResolved(issue.id)} style={{ marginTop: 10, width: '100%' }}>
+                      <button
+                        onClick={async () => {
+                          try {
+                            await updateDoc(doc(db, 'issues', issue.id), {
+                              resolved: !issue.resolved,
+                              resolvedAt: new Date().toISOString(),
+                              resolvedBy: user.uid,
+                            });
+                          } catch (_) {
+                            // no-op UI; could add toast
+                          }
+                        }}
+                        style={{ marginTop: 10, width: '100%' }}
+                      >
                         {issue.resolved ? 'Mark as Unresolved' : 'Mark as Resolved'}
                       </button>
                     )}
