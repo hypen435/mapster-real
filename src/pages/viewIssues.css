@@ -1,0 +1,278 @@
+/* Issue Cards Container */
+.stack.gap-md {
+  display: grid;
+  gap: 2rem;
+  padding: 1rem;
+}
+
+/* Card Container */
+.issue-card {
+  display: grid;
+  grid-template-areas: 
+    "title"
+    "image"
+    "map"
+    "meta"
+    "description";
+  gap: 1.5rem;
+  padding: 1.5rem;
+  background: #ffffff;
+  border-radius: 20px;
+  border: 1px solid rgba(229, 231, 235, 0.5);
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.08);
+  min-height: 360px;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.issue-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.12);
+}
+
+/* Map Container */
+.issue-card__map {
+  grid-area: map;
+  height: 280px;
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+  border: 1px solid #e5e7eb;
+}
+
+.issue-card__map .leaflet-container {
+  height: 100%;
+  width: 100%;
+  border-radius: 16px;
+}
+
+.issue-card__map--empty {
+  height: 280px;
+  border-radius: 16px;
+  background: linear-gradient(45deg, #f3f4f6, #e5e7eb);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 500;
+  color: #6b7280;
+}
+
+/* Content Sections */
+.issue-card__header {
+  grid-area: title;
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 1rem;
+  padding-bottom: 0.5rem;
+  border-bottom: 1px solid #e5e7eb;
+}
+
+.issue-card__title {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #111827;
+  margin: 0;
+  line-height: 1.3;
+}
+
+.issue-card__date {
+  font-size: 0.875rem;
+  color: #6b7280;
+  white-space: nowrap;
+  padding-top: 0.25rem;
+}
+
+/* Images Section */
+.issue-card__images {
+  grid-area: image;
+  width: 100%;
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+}
+
+/* Description Section */
+.issue-card__description-container {
+  grid-area: description;
+  background: #f8fafc;
+  padding: 1.25rem;
+  border-radius: 16px;
+  margin-top: 0.5rem;
+}
+
+/* Images */
+.issue-card__image { 
+  width: 100%;
+  height: 280px;
+  border-radius: 16px;
+  object-fit: cover;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+}
+
+/* Location & Description */
+.issue-card__meta {
+  grid-area: meta;
+  background: #f8fafc;
+  padding: 1.25rem;
+  border-radius: 16px;
+  border: 1px solid #e5e7eb;
+}
+
+.issue-card__location,
+.issue-card__location-details {
+  color: #374151;
+  margin: 0.5rem 0;
+  font-size: 1rem;
+  line-height: 1.5;
+}
+
+.issue-card__location strong,
+.issue-card__location-details strong {
+  color: #1f2937;
+  font-weight: 600;
+  margin-right: 0.5rem;
+}
+
+.issue-card__description {
+  grid-area: description;
+  color: #374151;
+  line-height: 1.6;
+  font-size: 1rem;
+  margin: 0;
+  padding: 1.25rem;
+  background: #fff;
+  border: 1px solid #e5e7eb;
+  border-radius: 16px;
+}
+
+/* Buttons */
+.btn { 
+  appearance: none;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.625rem 1rem;
+  border-radius: 12px;
+  font-weight: 600;
+  font-size: 0.9rem;
+  transition: all 0.2s ease;
+  cursor: pointer;
+}
+
+.btn--danger { 
+  background: #fef2f2;
+  color: #dc2626;
+  border: 1px solid #fee2e2;
+}
+
+.btn--danger:hover:not(:disabled) { 
+  background: #fee2e2;
+  color: #b91c1c;
+}
+
+.btn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+/* Image Slider */
+.slick-slider {
+  margin: 0.5rem 0;
+  border-radius: 16px;
+  overflow: hidden;
+}
+
+.slick-slide {
+  padding: 0.5rem;
+}
+
+.slick-slide img {
+  width: 100%;
+  height: 280px;
+  object-fit: cover;
+  border-radius: 16px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+}
+
+.slick-dots {
+  bottom: -30px;
+}
+
+.slick-dots li button:before {
+  color: #3b82f6;
+  opacity: 0.4;
+  font-size: 8px;
+}
+
+.slick-dots li.slick-active button:before {
+  opacity: 1;
+  color: #2563eb;
+}
+
+/* Page Title */
+.title {
+  font-size: 2rem;
+  font-weight: 700;
+  color: #111827;
+  margin-bottom: 2rem;
+}
+
+/* Loading & Error States */
+.error {
+  color: #dc2626;
+  padding: 1rem;
+  background: #fef2f2;
+  border-radius: 12px;
+  font-weight: 500;
+}
+
+/* Responsive Design */
+@media (min-width: 768px) {
+  .issue-card {
+    grid-template-areas:
+      "title      title"
+      "image      map"
+      "meta       map"
+      "description description";
+    grid-template-columns: 1.2fr 1fr;
+    grid-template-rows: auto 300px auto auto;
+  }
+
+  .issue-card__map,
+  .issue-card__map--empty {
+    height: 100%;
+  }
+
+  .slick-slide img {
+    height: 300px;
+  }
+
+  .issue-card__description {
+    margin-top: 1rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  .stack.gap-md {
+    padding: 2rem;
+  }
+
+  .issue-card {
+    padding: 2rem;
+  }
+
+  .issue-card__title {
+    font-size: 1.75rem;
+  }
+}
+
+@media (min-width: 1280px) {
+  .issue-card {
+    grid-template-columns: 1.5fr 1fr;
+    grid-template-rows: auto 350px auto auto;
+  }
+
+  .slick-slide img {
+    height: 350px;
+  }
+}

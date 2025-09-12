@@ -1,38 +1,71 @@
-.App {
-  text-align: center;
+:root { --bg: #ffffff; --text: #111827; --muted: #6b7280; --border: #e5e7eb; --primary: #2563eb; --primary-600: #1d4ed8; --danger: #ef4444; }
+
+* { box-sizing: border-box; }
+html, body, #root { height: 100%; }
+body { margin: 0; font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, Noto Sans, "Apple Color Emoji", "Segoe UI Emoji"; background: var(--bg); color: var(--text); }
+
+.container { width: 100%; margin: 0; padding: 0 16px; }
+.row { display: flex; align-items: center; }
+.stack { display: flex; flex-direction: column; }
+.gap-sm { gap: 8px; }
+.gap-md { gap: 12px; }
+.gap-lg { gap: 20px; }
+
+.app-root { min-height: 100%; display: flex; flex-direction: column; }
+.app-header { position: sticky; top: 0; z-index: 10; border-bottom: 1px solid var(--border); background: #fff; }
+.header-inner { display: flex; align-items: center; justify-content: space-between; height: 64px; }
+.brand { font-weight: 700; letter-spacing: 0.3px; color: black;}
+
+.main-content { flex: 1; padding: 24px 0; height: calc(100vh - 128px); }
+.app-footer { border-top: 1px solid var(--border); padding: 16px 0; margin-top: 24px; }
+
+.title { font-size: 28px; margin-top: 25;text-align: center; }
+.muted { color: var(--muted); }
+
+.btn { appearance: none; border: 1px solid var(--border); background: #fff; color: #111827; border-radius: 10px; padding: 10px 14px; cursor: pointer; transition: transform 0.06s ease, background 0.2s ease, border-color 0.2s ease; text-decoration: none; display: inline-flex; align-items: center; justify-content: center; }
+.btn:hover { background: #f9fafb; }
+.btn:active { transform: translateY(1px); }
+.btn.primary { background: var(--primary); color: #fff; border-color: var(--primary); }
+.btn.primary:hover { background: var(--primary-600); border-color: var(--primary-600); }
+
+/* Focus-visible for accessibility */
+:focus-visible { outline: 2px solid var(--primary); outline-offset: 2px; }
+.nav-link:focus-visible, .btn:focus-visible, input:focus-visible, textarea:focus-visible, select:focus-visible { box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.18); border-color: var(--primary); }
+
+.form { width: 100%; max-width: 640px; }
+.field { display: flex; flex-direction: column; gap: 6px; }
+.field > span { font-size: 14px; color: #374151; }
+.input, input[type="text"], input[type="email"], input[type="file"], textarea { width: 100%; padding: 10px 12px; border: 1px solid var(--border); border-radius: 10px; font-size: 14px; background: #fff; color: #111827; outline: none; transition: border-color 0.15s ease, box-shadow 0.15s ease; }
+.input:focus, input:focus, textarea:focus { border-color: var(--primary); box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.12); }
+
+.notice { padding: 12px 14px; border: 1px solid var(--border); border-radius: 10px; }
+.notice.success { border-color: #10b981; background: #ecfdf5; color: #065f46; }
+
+@media (max-width: 640px) {
+  .header-inner { height: 56px; }
+  .nav { gap: 8px; }
+  .nav-link { padding: 6px 8px; }
+  .title { font-size: 24px; }
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
+/* Autocomplete dropdown */
+.autocomplete { position: relative; }
+.dropdown { position: absolute; top: 100%; left: 0; right: 0; background: #fff; border: 1px solid var(--border); border-radius: 10px; margin-top: 6px; max-height: 260px; overflow: auto; box-shadow: 0 6px 18px rgba(0,0,0,0.06); z-index: 5000; }
+.dropdown-item { width: 100%; text-align: left; background: #fff; border: 0; padding: 10px 12px; cursor: pointer; border-bottom: 1px solid #f3f4f6; }
+.dropdown-item:hover { background: #f9fafb; }
+.dropdown-item:last-child { border-bottom: 0; }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
+
+/* Map selected place chip */
+.map-chip { position: absolute; top: 10px; left: 10px; background: #111827; color: #fff; padding: 6px 10px; border-radius: 9999px; font-size: 12px; opacity: 0.92; pointer-events: none; }
+
+#image-nir-3{
   color: white;
 }
-
-.App-link {
-  color: #61dafb;
+#image-nir-1{
+  color: white;
 }
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+#image-nir-2{
+  color: white;
 }

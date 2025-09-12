@@ -1,0 +1,55 @@
+/* --- FOOTER SECTION --- */
+  .footer-section {
+    background-color: var(--discord-dark);
+    padding: 80px 24px 40px;
+    color: var(--discord-white);
+  }
+  
+  .footer-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 40px;
+    max-width: 1200px;
+    margin: 0 auto 60px;
+  }
+  
+  .footer-column h4 {
+    color: var(--discord-blurple);
+    font-size: 1rem;
+    margin-bottom: 16px;
+  }
+  
+  .footer-column a {
+    display: block;
+    color: var(--discord-white);
+    text-decoration: none;
+    margin-bottom: 12px;
+    transition: text-decoration 0.2s;
+  }
+  
+  .footer-column a:hover {
+    text-decoration: underline;
+  }
+  
+  .footer-bottom {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding-top: 32px;
+    border-top: 1px solid var(--discord-blurple);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  .footer-logo {
+    font-size: 1.5rem;
+    font-weight: 800;
+  }
+  .footer-bottom .btn-primary{
+      background-color: var(--discord-blurple);
+      color: var(--discord-white);
+  }
+  .footer-bottom .btn-primary:hover{
+      background-color: #4752c4;
+  }
+  

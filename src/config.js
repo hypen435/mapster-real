@@ -1,0 +1,4 @@
+export const CLOUDINARY_CLOUD_NAME = process.env.REACT_APP_CLOUDINARY_CLOUD_NAME || "dsndkcnf9";
+export const CLOUDINARY_UNSIGNED_PRESET = process.env.REACT_APP_CLOUDINARY_UPLOAD_PRESET || "bcrgd3bl";
+
+
